@@ -48,16 +48,29 @@ object FactorialWriter {
 
   // Task (1a)
 
-  // type Logged[A] = ???
-
+   type Logged[A] = Writer[Vector[String], A] 
   // Task (1b)
-  // def factorial(n: Int): ??? = ???
+  
+  // def factorial(n: Int): Logged[Int] = {
+  
+    val fact = if(n == 0) Logged(1) else (n*factorial(n-1)).writer
+    
+    val y = x.flatMap(v => Writer(Vector("add 2"),n*factorial(n-1)) ))
+
+    val error = "factorial($n) = $fact"
+    
+    Logged(error)
+
+    fact
+  }
+
+  
 
 
   // Task 1c
   // def factorialAsync(n: Int): ??? = ???
-
-
+    def factorialAsync(n: Int): Future[Int] = Future(factorial(n))
+  
 }
 
 object FactorialWriterExample extends App {
